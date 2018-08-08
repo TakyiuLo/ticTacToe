@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>Tic Tac Toe</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -12,6 +12,52 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1>Browser Template</h1>
+      <h1 id="signInStatus" class="not-sign-in">Not Signed in</h1>
+
+      <div id="signUp" class="box">
+        <form id="sign-up" class="" action="index.html" method="post">
+          <input type="email" name="" placeholder="Email Address">
+          <input type="password" name="" placeholder="Password">
+          <input type="password" name="" placeholder="Confirm Password">
+          <button type="submit" name="">Sign Up</button>
+        </form>
+      </div>
+
+      <div id="signIn" class="box">
+        <form id="sign-in" class="" action="index.html" method="post">
+          <input type="email" name="" placeholder="Email Address">
+          <input type="password" name="" placeholder="Password">
+          <button type="submit" name="">Sign In</button>
+        </form>
+      </div>
+
+      <div id="game">
+        <div class="navbar">
+          <form id="change-password" class="box" action="index.html" method="post">
+            <input type="password" name="" placeholder="Password">
+            <input type="password" name="" placeholder="Confirm Password">
+            <button type="submit" name="">Change Password</button>
+          </form>
+
+          <button id="sign-out" type="submit" name="">Sign out</button>
+        </div>
+
+        <div class="game-count box">Game Count</div>
+
+        <div class="game-board box">
+          <div class="box">1</div>
+          <div class="box">2</div>
+          <div class="box">3</div>
+          <div class="box">4</div>
+          <div class="box">5</div>
+          <div class="box">6</div>
+          <div class="box">7</div>
+          <div class="box">8</div>
+          <div class="box">9</div>
+        </div>
+
+        <div class="game-status-bar box">Game Status</div>
+
+      </div>
     </body>
 </html>
