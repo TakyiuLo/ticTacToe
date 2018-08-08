@@ -1,2 +1,19 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+body {
+  margin: 40px;
+}
+
+.box {
+  border: 1px solid black;
+  margin: 1px;
+}
+
+.credentials {
+  background-color: Dodgerblue;
+}
+
+.game {
+  background-color: lightgreen;
+}
