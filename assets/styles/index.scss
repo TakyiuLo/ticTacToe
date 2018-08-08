@@ -17,3 +17,21 @@ body {
 .game {
   background-color: lightgreen;
 }
+
+.game-board {
+  display: flex;
+  flex-direction: column;
+}
+
+.board-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.board-row div {//game cells
+  height: 80px;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
