@@ -1,6 +1,5 @@
 'use strict'
 
-const events = require('./events')
 const game = require('./game')
 
 const clicked = function (event) {

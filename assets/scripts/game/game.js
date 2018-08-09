@@ -1,5 +1,7 @@
 'use strict'
 
+const events = require('./events')
+
 const game = {
   // This is the default game object
   board: ['', '', '', '', '', '', '', '', ''],
@@ -65,14 +67,14 @@ const game = {
       this.isOver = true
     }
     // check is it a draw
-    if (this.board.every(element => element !== '')) {
+    if (this.board.every(element => element !== '') && this.winner !== 'X') {
       this.winner = 'draw'
       this.isOver = true
     }
   },
   start: function () {
     // so choose cell
-    // events.onCreateGame()
+    events.onCreateGame()
   },
   changeTurn: function () {
     this.whosTurn = this.whosTurn === 'X' ? 'O' : 'X'
@@ -111,6 +113,7 @@ const game = {
     this.isOver = false
     this.winner = ''
     this.winningCells = []
+    this.start()
     return Object.assign({}, this)
   }
 }

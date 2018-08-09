@@ -1,6 +1,7 @@
 'use strict'
 
-const config = require('../config.js')
+const config = require('../config')
+const store = require('../store')
 
 const createGame = function () {
   // Don't have auth yet
@@ -8,7 +9,9 @@ const createGame = function () {
   return $.ajax({
     url: config.apiUrl + '/games',
     method: 'POST',
-    data: {}
+    headers: {
+      'Authorization': 'Token token=' + store.user.token
+    }
   })
 }
 

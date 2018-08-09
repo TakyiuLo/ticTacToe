@@ -13,36 +13,38 @@
     </head>
     <body>
       <h1 id="signInStatus" class="not-sign-in">Not Signed in</h1>
+      <h3 id="message"></h3>
 
       <div id="credentials" class="box credentials">Credentials
         <div id="signUp" class="box">Sign Up
-          <form id="sign-up" class="" action="index.html" method="post">
-            <input type="email" name="" placeholder="Email Address">
-            <input type="password" name="" placeholder="Password">
-            <input type="password" name="" placeholder="Confirm Password">
-            <button type="submit" name="">Sign Up</button>
+          <form id="sign-up" class="">
+            <input type="email" name="credentials[email]" placeholder="Email Address">
+            <input type="password" name="credentials[password]" placeholder="Password">
+            <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+            <button type="submit">Sign Up</button>
           </form>
         </div>
 
         <div id="signIn" class="box">Sign In
-          <form id="sign-in" class="" action="index.html" method="post">
-            <input type="email" name="" placeholder="Email Address">
-            <input type="password" name="" placeholder="Password">
-            <button type="submit" name="">Sign In</button>
+          <form id="sign-in" class="">
+            <input type="email" name="credentials[email]" placeholder="Email Address">
+            <input type="password" name="credentials[password]" placeholder="Password">
+            <button type="submit">Sign In</button>
           </form>
         </div>
       </div>
 
-
-      <div id="game" class="box game">Game
+      <div id="game" class="box game collapse">Game
         <div class="navbar box">Navbar
-          <form id="change-password" class="box" action="index.html" method="post">
-            <input type="password" name="" placeholder="Password">
-            <input type="password" name="" placeholder="Confirm Password">
-            <button type="submit" name="">Change Password</button>
+          <form id="change-password" class="box">
+            <input type="password" name="passwords[old]" placeholder="Old Password">
+            <input type="password" name="passwords[new]" placeholder="New Password">
+            <button type="submit">Change Password</button>
           </form>
 
-          <button id="sign-out" class="box" type="submit" name="">Sign out</button>
+          <form id="sign-out" class="box">
+            <button type="submit">Sign out</button>
+          </form>
         </div>
 
         <div class="game-count box">Game Count</div>
