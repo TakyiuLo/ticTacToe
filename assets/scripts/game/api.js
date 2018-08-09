@@ -1,9 +1,9 @@
 'use strict'
 
-const config = require('./config.js')
+const config = require('../config.js')
 
 const createGame = function () {
-  console.log('createGame')
+  // Don't have auth yet
 
   return $.ajax({
     url: config.apiUrl + '/games',
