@@ -18,7 +18,7 @@ const signInSuccess = function (response) {
   $('#signInStatus').text('Signed In')
   $('#message').text('Successfully Sign In')
   $('#credentials').addClass('collapse')
-  $('#game').removeClass('collapse').addClass('collapse in')
+  $('#game').removeClass('collapse')
   $('#sign-in input').val('')
   // start Game Here //
   game.startGame()
@@ -40,7 +40,7 @@ const changePasswordFail = function () {
 const signOutSuccess = function () {
   $('#signInStatus').text('Not Signed In')
   $('#message').text('Successfully Sign Out')
-  $('#credentials').removeClass('collapse').addClass('collapse in')
+  $('#credentials').removeClass('collapse')
   $('#game').addClass('collapse')
   // remove Authorization
   store.user = {}
