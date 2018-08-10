@@ -96,9 +96,6 @@ const game = {
     // store game in store to prevent circular dependencies
     store.game = this
   },
-  updateUI: function () {
-    this.getAllGames()
-  },
   changeTurn: function () {
     this.whosTurn = this.whosTurn === 'X' ? 'O' : 'X'
     // console.log('changed turn')
@@ -163,7 +160,7 @@ const game = {
     const cell = '#cell' + (store.playerIndex + 1)
     $(cell).text(this.whosTurn)
     $(cell).off('click')
-    // check winner after we retrive game from server
+    // check winner after we retrieved game from server
     this.checkWinner()
     this.isGameOver()
     // server doesn't have turns so we need to manually change turn
@@ -177,9 +174,6 @@ const game = {
     $('.board-row div').text('')
     // clean status game bar
     $('#game-status-bar').text('Game Status')
-  },
-  showGameBoard: function () {
-    $('#game-board').removeClass('hidden')
   },
   endGame: function () {
     // This function is use when people wanted to force quit the games

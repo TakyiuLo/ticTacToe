@@ -7,7 +7,7 @@ const onCreateSuccess = function (response) {
   // console.log('create game', response.game)
   store.serverGame = response.game
   // console.log('store on create', store)
-  store.game.showGameBoard()
+  $('#game-board').removeClass('hidden')
 }
 
 const onCreateFailure = function () {
