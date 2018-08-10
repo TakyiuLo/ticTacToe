@@ -1,6 +1,7 @@
 'use strict'
 
 const events = require('./events')
+const store = require('../store')
 
 const game = {
   // This is the default game object
@@ -19,6 +20,10 @@ const game = {
     // game over procedures
     console.log('game over, Winner is', this.winner)
     $('.board-row div').off('click')
+    $('#game-status-bar').text('GAME OVER, The Winner is ' + this.winner)
+
+    // UI will call on this function when Successfully update the server for
+    // game over
   },
   equalVals: function (element, index, array) {
     return element === array[0] && array[0] !== ''
@@ -64,20 +69,30 @@ const game = {
 
     if (this.winner !== '') {
       // console.log(this.winner)
-      this.isOver = true
+      // this.isOver = true
+      const data = {
+        game: {
+          over: true
+        }
+      }
+      events.onUpdateGameOver(data)
     }
     // check is it a draw
     if (this.board.every(element => element !== '') && this.winner !== 'X') {
       this.winner = 'draw'
-      this.isOver = true
+      // this.isOver = true
     }
   },
   start: function () {
+    console.log('Game start', this)
     // so choose cell
     events.onCreateGame()
+    // store game in store to prevent circular dependencies
+    store.game = this
   },
   changeTurn: function () {
     this.whosTurn = this.whosTurn === 'X' ? 'O' : 'X'
+    console.log('changed turn')
   },
   chooseCell: function (cell) {
     // args:
@@ -86,19 +101,62 @@ const game = {
     // use console.log('before', JSON.parse(JSON.stringify(game))) to
     // show before and after game has change for reference type
     const index = cell.id.substring(4) - 1
-    this.board[index] = this.whosTurn
+    // this.board[index] = this.whosTurn
 
-    if (this.whosTurn === 'X') {
-      $(cell).text(this.whosTurn)
-      $(cell).off('click')
-    } else {
-      $(cell).text(this.whosTurn)
-      $(cell).off('click')
+    // if (this.whosTurn === 'X') {
+    //   // $(cell).text(this.whosTurn)
+    //   // should update the server
+    //   const data = {
+    //     game: {
+    //       cell: {
+    //         index: index,
+    //         value: this.whosTurn
+    //       },
+    //       over: this.isOver
+    //     }
+    //   }
+    //   store.playerIndex = index
+    //   // console.log(data)
+    //   events.onUpdateGame(data)
+    //   $(cell).off('click')
+    // } else {
+    //   // $(cell).text(this.whosTurn)
+    //   $(cell).off('click')
+    // }
+
+    const data = {
+      game: {
+        cell: {
+          index: index,
+          value: this.whosTurn
+        },
+        over: this.isOver
+      }
     }
+    store.playerIndex = index
+    // console.log(data)
+    events.onUpdateGame(data)
+    // manually turn cell to unclickable
+    $(cell).off('click')
     // give checkWinner the board index of the current cell
+    // this.checkWinner()
+    // this.isGameOver()
+    // this.changeTurn()
+  },
+  updateGameBoard: function () {
+    // this function is to retrieve data from server to update game board
+    events.onGetGame()
+  },
+  retrievedGame: function (response) {
+    // this function invokes when we got the data from server
+    this.board = response.game.cells
+    // change html cell to correct text ('X' or 'O')
+    $('#cell' + (store.playerIndex + 1)).text(this.whosTurn)
+    // check winner after we retrive game from server
     this.checkWinner()
     this.isGameOver()
-    this.changeTurn()
+    // server doesn't have turns so we need to manually change turn
+    store.game.changeTurn()
   },
   newGame: function () {
     /*
@@ -118,11 +176,4 @@ const game = {
   }
 }
 
-const start = function () {
-  return game.newGame()
-}
-
-module.exports = {
-  start,
-  game
-}
+module.exports = game

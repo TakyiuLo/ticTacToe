@@ -3,7 +3,7 @@
 const game = require('./game')
 
 const clicked = function (event) {
-  game.game.chooseCell(event.target)
+  game.chooseCell(event.target)
 }
 
 const addHandlers = function () {
