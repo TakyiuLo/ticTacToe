@@ -14,7 +14,7 @@ const signUpFail = function () {
 
 const signInSuccess = function (response) {
   store.user = response.user
-  console.log(store.user)
+  // console.log(store.user)
   $('#signInStatus').text('Signed In')
   $('#message').text('Successfully Sign In')
   $('#credentials').addClass('collapse')

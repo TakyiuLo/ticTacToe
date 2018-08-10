@@ -4,9 +4,9 @@ const store = require('../store')
 
 const onCreateSuccess = function (response) {
   $('#message').text('Game Start')
-  console.log('create game', response.game)
+  // console.log('create game', response.game)
   store.serverGame = response.game
-  console.log('store on create', store)
+  // console.log('store on create', store)
   store.game.showGameBoard()
 }
 
@@ -16,20 +16,20 @@ const onCreateFailure = function () {
 
 const onUpdateGameSuccess = function () {
   $('#message').text('Successfully Update Game')
-  console.log('Updated')
+  // console.log('Updated')
   // update the logic game board and change turn
   store.game.updateGameBoard()
 }
 
 const onUpdateGameFailure = function () {
   $('#message').text('Fail to Update Game')
-  console.log('fail to update')
+  // console.log('fail to update')
 }
 
 const onGetGameSuccess = function (response) {
   $('#message').text('Successfully Get Game')
   response = JSON.parse(JSON.stringify(response))
-  console.log('Successfully Get Game', response)
+  // console.log('Successfully Get Game', response)
   store.game.retrievedGame(response)
 }
 
@@ -48,7 +48,7 @@ const onOverFailure = function () {
 
 const onGetAllGamesSuccess = function (response) {
   $('#message').text('Get All Games Successfully')
-  console.log('Get All games', response)
+  // console.log('Get All games', response)
 }
 
 const onGetAllGamesFailure = function () {

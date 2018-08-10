@@ -7,7 +7,7 @@ const ui = require('./ui')
 const onSignUp = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
-  console.log('data', data)
+  // console.log('data', data)
 
   api.signUp(data)
     .then(ui.signUpSuccess)
@@ -17,7 +17,7 @@ const onSignUp = function (event) {
 const onSignIn = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
-  console.log('data', data)
+  // console.log('data', data)
 
   api.signIn(data)
     .then(ui.signInSuccess)
@@ -27,7 +27,7 @@ const onSignIn = function (event) {
 const onChangePassword = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
-  console.log('data', data)
+  // console.log('data', data)
 
   api.changePassword(data)
     .then(ui.changePasswordSuccess)

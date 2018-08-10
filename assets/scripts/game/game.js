@@ -18,7 +18,7 @@ const game = {
   },
   gameOver: function () {
     // game over procedures
-    console.log('game over, Winner is', this.winner)
+    // console.log('game over, Winner is', this.winner)
     $('.board-row div').off('click')
     $('#game-status-bar').text('GAME OVER, The Winner is ' + this.winner)
     $('#new-game').removeClass('hidden')
