@@ -21,15 +21,23 @@ const onGetGame = function () {
     .then(ui.onGetGameSuccess)
     .catch(ui.onGetGameFailure)
 }
+
 const onUpdateGameOver = function (data) {
   api.updateGame(data)
     .then(ui.onOverSuccess)
     .catch(ui.onOverFailure)
 }
 
+const onGetAllGames = function () {
+  api.getAllGames()
+    .then(ui.onGetAllGamesSuccess)
+    .catch(ui.onGetAllGamesFailure)
+}
+
 module.exports = {
   onCreateGame,
   onUpdateGame,
   onGetGame,
-  onUpdateGameOver
+  onUpdateGameOver,
+  onGetAllGames
 }

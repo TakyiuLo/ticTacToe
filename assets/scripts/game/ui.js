@@ -7,6 +7,7 @@ const onCreateSuccess = function (response) {
   console.log('create game', response.game)
   store.serverGame = response.game
   console.log('store on create', store)
+  store.game.showGameBoard()
 }
 
 const onCreateFailure = function () {
@@ -41,9 +42,17 @@ const onOverSuccess = function () {
   store.game.gameOver()
 }
 
-const onOverFailure = function (response) {
-  console.log(response)
+const onOverFailure = function () {
   $('#message').text('Fail to Update Game Over')
+}
+
+const onGetAllGamesSuccess = function (response) {
+  $('#message').text('Get All Games Successfully')
+  console.log('Get All games', response)
+}
+
+const onGetAllGamesFailure = function () {
+  $('#message').text('Fail to Get All Game')
 }
 
 module.exports = {
@@ -54,5 +63,7 @@ module.exports = {
   onGetGameSuccess,
   onGetGameFailure,
   onOverSuccess,
-  onOverFailure
+  onOverFailure,
+  onGetAllGamesSuccess,
+  onGetAllGamesFailure
 }

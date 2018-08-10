@@ -21,7 +21,7 @@ const game = {
     console.log('game over, Winner is', this.winner)
     $('.board-row div').off('click')
     $('#game-status-bar').text('GAME OVER, The Winner is ' + this.winner)
-
+    $('#new-game').removeClass('hidden')
     // UI will call on this function when Successfully update the server for
     // game over
   },
@@ -80,6 +80,12 @@ const game = {
     // check is it a draw
     if (this.board.every(element => element !== '') && this.winner !== 'X') {
       this.winner = 'draw'
+      const data = {
+        game: {
+          over: true
+        }
+      }
+      events.onUpdateGameOver(data)
       // this.isOver = true
     }
   },
@@ -158,6 +164,23 @@ const game = {
     // server doesn't have turns so we need to manually change turn
     store.game.changeTurn()
   },
+  getAllGames: function () {
+    events.onGetAllGames()
+  },
+  cleanUI: function () {
+    // clear cell texts
+    $('.board-row div').text('')
+    // clean status game bar
+    $('#game-status-bar').text('Game Status')
+  },
+  showGameBoard: function () {
+    $('#game-board').removeClass('hidden')
+  },
+  endGame: function () {
+    // This function is use when people wanted to force quit the games
+    // for instance, sign out while playing game
+    this.newGame()
+  },
   newGame: function () {
     /*
        board: ['', '', '', '', '', '', '', '', ''],
@@ -172,7 +195,8 @@ const game = {
     this.winner = ''
     this.winningCells = []
     this.start()
-    return Object.assign({}, this)
+    this.cleanUI()
+    console.log('game', game)
   }
 }
 
