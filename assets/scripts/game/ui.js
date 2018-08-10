@@ -48,6 +48,7 @@ const onOverFailure = function () {
 
 const onGetAllGamesSuccess = function (response) {
   $('#message').text('Get All Games Successfully')
+  $('#game-count').text('Number of Games: ' + response.games.length)
   // console.log('Get All games', response)
 }
 

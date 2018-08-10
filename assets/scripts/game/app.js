@@ -30,7 +30,9 @@ const addHandlers = function () {
   // Mapping new Game button
   $('#new-game').on('click', newGame)
   // Mapping history button
-  $('#history').on('click', getHistory)
+  // $('#history').on('click', getHistory)
+  // appears when started game
+  getHistory()
   // Mapping start game button
   $('#start-game').on('click', startGame)
 }

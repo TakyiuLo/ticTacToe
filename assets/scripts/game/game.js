@@ -18,7 +18,7 @@ const game = {
   },
   gameOver: function () {
     // game over procedures
-    // console.log('game over, Winner is', this.winner)
+    console.log('game over, Winner is', this.winner)
     $('.board-row div').off('click')
     $('#game-status-bar').text('GAME OVER, The Winner is ' + this.winner)
     $('#new-game').removeClass('hidden')
@@ -96,6 +96,9 @@ const game = {
     // store game in store to prevent circular dependencies
     store.game = this
   },
+  updateUI: function () {
+    this.getAllGames()
+  },
   changeTurn: function () {
     this.whosTurn = this.whosTurn === 'X' ? 'O' : 'X'
     // console.log('changed turn')
@@ -143,7 +146,7 @@ const game = {
     // console.log(data)
     events.onUpdateGame(data)
     // manually turn cell to unclickable
-    $(cell).off('click')
+    // $(cell).off('click')
     // give checkWinner the board index of the current cell
     // this.checkWinner()
     // this.isGameOver()
@@ -157,7 +160,9 @@ const game = {
     // this function invokes when we got the data from server
     this.board = response.game.cells
     // change html cell to correct text ('X' or 'O')
-    $('#cell' + (store.playerIndex + 1)).text(this.whosTurn)
+    const cell = '#cell' + (store.playerIndex + 1)
+    $(cell).text(this.whosTurn)
+    $(cell).off('click')
     // check winner after we retrive game from server
     this.checkWinner()
     this.isGameOver()

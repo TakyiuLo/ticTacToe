@@ -45,7 +45,7 @@ const signOutSuccess = function () {
   // remove Authorization
   store.user = {}
   // remove Game while I am playing
-  game.endGame()
+  store.game.endGame()
 }
 const signOutFail = function () {
   $('#message').text('Failed to Sign Out')
