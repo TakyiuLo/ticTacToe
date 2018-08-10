@@ -90,7 +90,7 @@ const game = {
     }
   },
   start: function () {
-    console.log('Game start', this)
+    // console.log('Game start', this)
     // so choose cell
     events.onCreateGame()
     // store game in store to prevent circular dependencies
@@ -98,7 +98,7 @@ const game = {
   },
   changeTurn: function () {
     this.whosTurn = this.whosTurn === 'X' ? 'O' : 'X'
-    console.log('changed turn')
+    // console.log('changed turn')
   },
   chooseCell: function (cell) {
     // args:
@@ -196,7 +196,7 @@ const game = {
     this.winningCells = []
     this.start()
     this.cleanUI()
-    console.log('game', game)
+    // console.log('game', game)
   }
 }
 
