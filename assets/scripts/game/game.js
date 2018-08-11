@@ -118,7 +118,7 @@ const gameObject = {
   getAllGames: function () {
     events.onGetAllGames()
   },
-  endGame: function () {
+  refreshGame: function () {
     // This function is use when people wanted to force quit the games
     // for instance, sign out while playing game
     this.board = ['', '', '', '', '', '', '', '', '']
@@ -128,7 +128,7 @@ const gameObject = {
     this.winningCells = []
   },
   newGame: function () {
-    this.endGame()
+    this.refreshGame()
     this.start()
   }
 }
