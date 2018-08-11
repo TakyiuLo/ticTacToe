@@ -8,17 +8,25 @@ const onCreateSuccess = function (response) {
   store.serverGame = response.game
   // console.log('store on create', store)
   $('#game-board').removeClass('hidden')
+  // clear cell texts
+  $('.board-row div').text('')
+  // clean status game bar
+  $('#game-status-bar').text('Game Status')
 }
 
 const onCreateFailure = function () {
   $('#message').text('Fail to Create Game')
 }
 
-const onUpdateGameSuccess = function () {
+const onUpdateGameSuccess = function (response) {
   $('#message').text('Successfully Update Game')
   // console.log('Updated')
+  // change html cell to correct text ('X' or 'O')
+  const cell = '#cell' + (store.playerIndex + 1)
+  $(cell).text(store.game.whosTurn)
+  $(cell).off('click')
   // update the logic game board and change turn
-  store.game.updateGameBoard()
+  store.game.updateGamelogic(response.game)
 }
 
 const onUpdateGameFailure = function () {
@@ -29,8 +37,7 @@ const onUpdateGameFailure = function () {
 const onGetGameSuccess = function (response) {
   $('#message').text('Successfully Get Game')
   response = JSON.parse(JSON.stringify(response))
-  // console.log('Successfully Get Game', response)
-  store.game.retrievedGame(response)
+  console.log('Successfully Get Game', response)
 }
 
 const onGetGameFailure = function () {
@@ -39,7 +46,9 @@ const onGetGameFailure = function () {
 
 const onOverSuccess = function () {
   $('#message').text('Game Over')
-  store.game.gameOver()
+  $('.board-row div').off('click')
+  $('#game-status-bar').text('GAME OVER, The Winner is ' + store.game.winner)
+  $('#new-game').removeClass('hidden')
 }
 
 const onOverFailure = function () {

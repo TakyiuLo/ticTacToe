@@ -1,7 +1,7 @@
 'use strict'
 
 const store = require('../store.js')
-const game = require('../game/app')
+const gameApp = require('../game/app')
 
 const signUpSuccess = function () {
   $('#message').text('Successfully Sign Up')
@@ -21,7 +21,7 @@ const signInSuccess = function (response) {
   $('#game').removeClass('collapse')
   $('#sign-in input').val('')
   // start Game Here //
-  game.startGameProcedures()
+  gameApp.startGameProcedures()
 }
 const signInFail = function () {
   $('#message').text('Failed Sign In')
@@ -42,11 +42,11 @@ const signOutSuccess = function () {
   $('#message').text('Successfully Sign Out')
   $('#credentials').removeClass('collapse')
   $('#game').addClass('collapse')
-  // remove Authorization
-  store.user = {}
-  // remove Game while I am playing
-  store.game.endGame()
+  // quit game
+
+  gameApp.quitGameProcedures()
 }
+
 const signOutFail = function () {
   $('#message').text('Failed to Sign Out')
 }

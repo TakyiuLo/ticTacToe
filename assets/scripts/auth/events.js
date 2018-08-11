@@ -16,6 +16,7 @@ const onSignUp = function (event) {
 
 const onSignIn = function (event) {
   event.preventDefault()
+  event.stopImmediatePropagation()
   const data = getFormFields(event.target)
   // console.log('data', data)
 
@@ -36,7 +37,7 @@ const onChangePassword = function (event) {
 
 const onSignOut = function (event) {
   event.preventDefault()
-
+  event.stopImmediatePropagation()
   api.signOut()
     .then(ui.signOutSuccess)
     .catch(ui.signOutFail)
