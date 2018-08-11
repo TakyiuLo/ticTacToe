@@ -21,7 +21,7 @@ const signInSuccess = function (response) {
   $('#game').removeClass('collapse')
   $('#sign-in input').val('')
   // start Game Here //
-  gameApp.startGameProcedures()
+  store.events.startGameProcedures()
 }
 const signInFail = function () {
   $('#message').text('Failed Sign In')
@@ -44,7 +44,7 @@ const signOutSuccess = function () {
   $('#game').addClass('collapse')
   // quit game
 
-  gameApp.quitGameProcedures()
+  store.events.quitGameProcedures()
 }
 
 const signOutFail = function () {

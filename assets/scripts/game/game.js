@@ -1,6 +1,5 @@
 'use strict'
 
-const events = require('./events')
 const store = require('../store')
 
 const gameObject = {
@@ -12,16 +11,17 @@ const gameObject = {
   winningCells: [],
   gameOver: function () {
     // game over procedures
+    this.isOver = true
     const data = {
       game: {
         over: true
       }
     }
-    events.onUpdateGameOver(data)
+
+    // update the game isOver to server
+    store.events.updateGameOver(data)
 
     console.log('game over, Winner is', this.winner)
-    // UI will call on this function when Successfully update the server for
-    // game over
   },
   equalVals: function (element, index, array) {
     // This function is going to check if the entire array has the same value
@@ -40,7 +40,7 @@ const gameObject = {
     const col2 = [this.board[1], this.board[4], this.board[7]]
     const col3 = [this.board[2], this.board[5], this.board[8]]
 
-    // console.log(this)
+    // winning conditions
     if (blackslash.every(this.equalVals)) {
       this.winner = this.whosTurn
       this.winningCells = [0, 4, 8]
@@ -67,49 +67,32 @@ const gameObject = {
       this.winningCells = [2, 5, 8]
     }
 
+    // check draw
     if (this.board.every(element => element !== '') && this.winner !== 'X') {
       this.winner = 'draw'
     }
-    console.log('winner is', this.winner)
     // if there is a winner
-    // draw doesn't work
     if (this.winner !== '') {
-      // check is it a draw
-
       // there is a winner so we'll end the game
       this.gameOver()
     } else {
-      // server doesn't have turns so we need to manually change turn
+      // there is no winner so we'll change turn
       this.changeTurn()
     }
   },
   start: function () {
-    // console.log('Game start', this)
-    events.onCreateGame()
+    // Game start store game object to store so it can be access
+    store.game = this
   },
   changeTurn: function () {
+    // change turn
     this.whosTurn = this.whosTurn === 'X' ? 'O' : 'X'
-    // console.log('changed turn')
   },
-  chooseCell: function (cell) {
-    // args:
-    //  - cell: board cell, a html element
-    //      - Example of cell: <div id="cell4"></div>
-    // use console.log('before', JSON.parse(JSON.stringify(game))) to
-    // show before and after game has change for reference type
-    const index = cell.id.substring(4) - 1
-
-    const data = {
-      game: {
-        cell: {
-          index: index,
-          value: this.whosTurn
-        }
-      }
-    }
-    store.playerIndex = index
-    // update the game
-    events.onUpdateGame(data)
+  chooseCell: function () {
+    // update the local gameBoard
+    this.board[store.playerIndex] = this.whosTurn
+    // check is there a winner
+    this.checkWinner()
   },
   updateGamelogic: function (serverGame) {
     // this function is to retrieve data from server to update game board
@@ -117,9 +100,6 @@ const gameObject = {
     this.isOver = serverGame.over
     // check winner after we retrieved game from server
     this.checkWinner()
-  },
-  getAllGames: function () {
-    events.onGetAllGames()
   },
   refreshGame: function () {
     // This function is use when people wanted to force quit the games

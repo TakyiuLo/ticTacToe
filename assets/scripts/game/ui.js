@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('../store')
+const game = require('./game')
 
 const onCreateSuccess = function (response) {
   $('#message').text('Game Start')
@@ -10,8 +11,12 @@ const onCreateSuccess = function (response) {
   $('#game-board').removeClass('hidden')
   // clear cell texts
   $('.board-row div').text('')
+  // add game handlers
+  store.events.startGameProcedures()
   // clean status game bar
   $('#game-status-bar').text('Game Status')
+  // create logical game
+  game.newGame()
 }
 
 const onCreateFailure = function () {
@@ -22,11 +27,10 @@ const onUpdateGameSuccess = function (response) {
   $('#message').text('Successfully Update Game')
   // console.log('Updated')
   // change html cell to correct text ('X' or 'O')
-  const cell = '#cell' + (store.playerIndex + 1)
+  const cell = '#cell' + store.playerIndex
   $(cell).text(store.game.whosTurn)
   $(cell).off('click')
-  // update the logic game board and change turn
-  store.game.updateGamelogic(response.game)
+  game.chooseCell()
 }
 
 const onUpdateGameFailure = function () {

@@ -1,51 +1,42 @@
 'use strict'
 
-const game = require('./game')
 const store = require('../store')
+const events = require('./events')
 
-const clicked = function (event) {
+const boxClick = function (event) {
   // prevent event to ajax things twice
   event.preventDefault()
-  game.chooseCell(event.target)
+  const index = event.target.id.substring(4)
+  store.playerIndex = index
+  const data = {
+    game: {
+      cell: {
+        index: index,
+        value: store.game.whosTurn
+      }
+    }
+  }
+  events.onUpdateGame(data)
 }
 
 const newGame = function () {
-  // hide newGame button twice first time but it will be removed after that
   $('#new-game').addClass('hidden')
-  store.game.newGame()
-  // Map each cell clicks
-  $('.board-row div').off('click')
-  $('.board-row div').on('click', clicked)
+  events.onCreateGame()
 }
 
 const startGame = function () {
   $('#start-game').addClass('hidden')
-
-  // double game
-  // console.log(game)
-  // store game in store.js to prevent circular dependencies
-  // and because object is a reference type, changes in store.game will also
-  // change the game object
-  store.game = game
-  store.game.start()
-}
-
-const getHistory = function () {
-  store.game.getAllGames()
+  events.onCreateGame()
+  store.events.updateGameOver = events.onUpdateGameOver
 }
 
 const addHandlers = function () {
   // Mapping new Game button
-  $('#new-game').on('click', newGame)
-  // Mapping history button
-  // $('#history').on('click', getHistory)
-  // appears when started game
-  // getHistory()
+  $('#new-game').off('click').on('click', newGame)
   // Mapping start game button
-  $('#start-game').on('click', startGame)
-
+  $('#start-game').off('click').on('click', startGame)
   // Map each cell clicks
-  $('.board-row div').on('click', clicked)
+  $('.board-row div').off('click').on('click', boxClick)
 }
 
 const startGameProcedures = function () {
@@ -70,6 +61,7 @@ const quitGameProcedures = function () {
   // at the same time.
   $('#new-game').off('click')
   $('#new-game').addClass('hidden')
+  // hide game board
   $('#game-board').addClass('hidden')
   // May need to clean events first if newGame button is avaliable while playing
   $('.board-row div').off('click')
