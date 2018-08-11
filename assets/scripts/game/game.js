@@ -66,13 +66,16 @@ const gameObject = {
       this.winner = this.whosTurn
       this.winningCells = [2, 5, 8]
     }
-    // console.log('winner is', this.winner)
+
+    if (this.board.every(element => element !== '') && this.winner !== 'X') {
+      this.winner = 'draw'
+    }
+    console.log('winner is', this.winner)
     // if there is a winner
+    // draw doesn't work
     if (this.winner !== '') {
       // check is it a draw
-      if (this.board.every(element => element !== '') && this.winner !== 'X') {
-        this.winner = 'draw'
-      }
+
       // there is a winner so we'll end the game
       this.gameOver()
     } else {
