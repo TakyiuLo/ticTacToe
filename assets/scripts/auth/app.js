@@ -6,7 +6,7 @@ const addHandlers = function () {
   $('#sign-up').on('submit', events.onSignUp)
   $('#sign-in').on('submit', events.onSignIn)
   $('#change-password').on('submit', events.onChangePassword)
-  $('#sign-out').on('click', events.onSignOut)
+  $('.sign-out').on('click', events.onSignOut)
 }
 module.exports = {
   addHandlers

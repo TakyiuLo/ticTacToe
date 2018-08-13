@@ -37,10 +37,23 @@ const addHandlers = function () {
   $('#start-game').off('click').on('click', startGame)
   // Map each cell clicks
   $('.board-row div').off('click').on('click', boxClick)
+  // sidebar
+  $('.sidebar-toggle').on('click', function (e) {
+    e.preventDefault()
+    $('.wrapper').toggleClass(function () {
+      if ($('.wrapper .contents').hasClass('col-md-12')) {
+        $('.wrapper .contents').addClass('col-md-9').removeClass('col-md-12')
+      } else if ($('.wrapper .contents').hasClass('col-md-9')) {
+        $('.wrapper .contents').addClass('col-md-12').removeClass('col-md-9')
+      }
+      return 'slide-out'
+    })
+  })
 }
 
 const startGameProcedures = function () {
   addHandlers()
+  // Mapping Game Count
 }
 
 const quitGameProcedures = function () {

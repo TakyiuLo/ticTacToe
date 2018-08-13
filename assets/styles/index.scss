@@ -1,43 +1,234 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
+$black: #111;
+$dogerblue: rgb(30, 144, 255);
+$lightgreen: rgb(144, 238, 144);
+$grey: #999;
+$lightgrey: #ddd;
+$lightergrey: #eee;
+$lightwhite: rgb(245, 245, 245);
+$white-shadow: rgba(220, 220, 220, .15);
+$blue-shadow: rgba(9, 52, 87, .2);
+
+@font-face {
+  font-family: 'KBSticktoIt'; // by KhrysKreations
+  src: url('./KBSticktoIt.ttf');
+}
+
 body {
+  // border: 1px solid $black;
   margin: 40px;
+  text-align: center;
+  background-color: $lightwhite;
+  height: 725px;
+  background-image: linear-gradient(to right, #051937, #093457, #0a5177, #0b7195, #1692b2);
+  height: auto;
+  width: auto;
+  overflow-x: hidden;
+  // overflow: hidden;
 }
 
 .box {
-  border: 1px solid black;
-  margin: 1px;
+  border: 1px solid $black;
+  padding: 1px;
+}
+
+.view {
+  // position: relative;
+  // top: 100px;
+}
+
+.font-page {
+  padding-top: 100px;
+}
+
+.title, .message {
+  font-size: 100px;
+  font-family: 'KBSticktoIt';
+  color: $lightwhite;
+}
+.message {
+  font-size: 30px;
 }
 
 .credentials {
-  background-color: Dodgerblue;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  background-color: $white-shadow;
+}
+
+.form {
+  font-size: 30px;
+  color: $lightwhite;
+  padding: 15px;
+}
+
+#signUp {
+  margin-right: 30px;
+}
+#signIn {
+  margin-left: 30px;
+}
+
+.sign-up-button,
+.sign-in-button,
+.change-password-button {
+  float: right;
+  height: 50%;
+  color: $black;
+}
+
+// testings start here
+.wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
+@keyframes slide-right {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(19%);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes slide-right {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(19%);
+    opacity: 1;
+  }
+}
+
+.slide-out {
+  -webkit-animation: slide-right 1s forwards;
+  animation: slide-right 1s forwards;
+}
+
+.sidebar {
+  margin-left: -250px;
+  border: 1px solid red;
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 100vh;
+  background-color: #1692b2;
+  & h2 {
+    color: white;
+    text-align: left;
+    font-size: 40px;
+  }
+  & .sign-out {
+    display: block;
+    text-align: left;
+    margin-bottom: 3px;
+    padding: 10px;
+    background-color: $white-shadow;
+    & a {
+      display: inline;
+      text-decoration: none;
+      font-size: 20px;
+      color: $lightwhite;
+    }
+    &:hover {
+      background-color: $blue-shadow;
+    }
+  }
+  & form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: $white-shadow;
+    & legend {
+      color: $lightwhite;
+    }
+    & button {
+      float: right;
+    }
+    &:hover {
+      background-color: $blue-shadow;
+    }
+  }
+}
+
+.border-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 4em;
+  height: 4em;
+  padding: 0.4em 0 0.4em 0;
+  background-color: #0b7195;
+  &:hover {
+    background: $white-shadow;
+  }
+}
+.border-menu-bar {
+  border: 1px solid black;
+  border-radius: 1em;
+  background-color: black;
+  width: 3em;
+  height: .4em;
+  border-color: $grey;
+}
+
+// testings end here
+
+.navbar {
+  padding-top: 10px;
+  background: $white-shadow;
 }
 
 .game {
-  background-color: lightgreen;
+  background-color: $lightgreen;
 }
 
 .game-board {
+  background: $grey;
   display: flex;
   flex-direction: column;
-  background: #cccccc;
 }
 
 .board-row {
   display: flex;
   flex-direction: row;
+
+  & div { // game cells
+    align-items: center;
+    background-color: $lightgrey;
+    display: flex;
+    height: 80px;
+    justify-content: center;
+    width: 80px;
+
+    &:hover {
+      background-color: $lightergrey;
+    }
+  }
 }
 
-.board-row div {//game cells
-  height: 80px;
-  width: 80px;
+.game-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #eeeeee;
+  flex-direction: row;
 }
 
-.board-row div:hover {
-  background-color: #dddddd;
+@media screen and (min-width: 1000px) {
+  .form {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .form {
+    width: 350px;
+  }
 }
