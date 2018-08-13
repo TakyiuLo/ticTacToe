@@ -17,6 +17,7 @@ const signInSuccess = function (response) {
   // console.log(store.user)
   $('#signInStatus').text('Signed In')
   $('.message').text('Successfully Sign In')
+
   $('#credentials').addClass('hidden')
   $('#game').removeClass('hidden')
   $('#sign-in input').val('')
@@ -31,12 +32,24 @@ const signInFail = function () {
 }
 
 const changePasswordSuccess = function () {
-  $('.message').text('Successfully Change Password')
   $('#change-password input').val('')
+  // $('.board-row div').css('pointer-events', 'none')
+  $('.change-password-form legend').text('Password Changed')
+  $('.change-password-form legend').toggleClass('animation-change-password-success')
+  setTimeout(function () {
+    $('.change-password-form legend').removeClass('animation-change-password-success')
+    $('.change-password-form legend').removeClass('animation-change-password-fail')
+  }, 500)
 }
 const changePasswordFail = function () {
-  $('.message').text('Failed to Change Password')
   $('#change-password input').val('')
+  //
+  $('.change-password-form legend').text('Change Password')
+  $('.change-password-form legend').toggleClass('animation-change-password-fail')
+  setTimeout(function () {
+    $('.change-password-form legend').removeClass('animation-change-password-fail')
+    $('.change-password-form legend').removeClass('animation-change-password-success')
+  }, 500)
 }
 
 const signOutSuccess = function () {

@@ -10,6 +10,8 @@ $lightergrey: #eee;
 $lightwhite: rgb(245, 245, 245);
 $white-shadow: rgba(220, 220, 220, .15);
 $blue-shadow: rgba(9, 52, 87, .2);
+$orange: rgba(255, 165, 0, .9);
+$darkerorange: 	rgba(255, 140, 0, .8);
 
 @font-face {
   font-family: 'KBSticktoIt'; // by KhrysKreations
@@ -18,7 +20,7 @@ $blue-shadow: rgba(9, 52, 87, .2);
 
 body {
   // border: 1px solid $black;
-  margin: 40px;
+  // margin: 40px;
   text-align: center;
   background-color: $lightwhite;
   height: 725px;
@@ -32,11 +34,6 @@ body {
 .box {
   border: 1px solid $black;
   padding: 1px;
-}
-
-.view {
-  // position: relative;
-  // top: 100px;
 }
 
 .font-page {
@@ -84,27 +81,20 @@ body {
 // testings start here
 .wrapper {
   display: flex;
+  flex-direction: row;
   align-items: stretch;
+}
+.contents {
+  width: 100%;
 }
 
 @keyframes slide-right {
   from {
-    opacity: 0;
+    transform: translateX(0px);
   }
 
   to {
-    transform: translateX(19%);
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes slide-right {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    transform: translateX(19%);
+    transform: translateX(300px);
     opacity: 1;
   }
 }
@@ -115,10 +105,9 @@ body {
 }
 
 .sidebar {
-  margin-left: -250px;
-  border: 1px solid red;
-  min-width: 250px;
-  max-width: 250px;
+  margin-left: -300px;
+  min-width: 300px;
+  max-width: 300px;
   min-height: 100vh;
   background-color: #1692b2;
   & h2 {
@@ -142,6 +131,36 @@ body {
       background-color: $blue-shadow;
     }
   }
+
+@keyframes shake { // credit to w3school
+  0% { transform: translate(1px, 1px) }
+  10% { transform: translate(-1px, -2px) }
+  20% { transform: translate(-3px, 0px) }
+  30% { transform: translate(3px, 2px) }
+  40% { transform: translate(1px, -1px) }
+  50% { transform: translate(-1px, 2px) }
+  60% { transform: translate(-3px, 1px) }
+  70% { transform: translate(3px, 1px)  }
+  80% { transform: translate(-1px, -1px) }
+  90% { transform: translate(1px, 2px) }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+
+  }
+}
+
+.animation-shake {
+  animation: shake .5s 3;
+}
+.animation-change-password-success {
+  animation: shake .5s 3;
+  color: $lightgreen;
+}
+.animation-change-password-fail {
+  animation: reverse shake .5s 3;
+  color: red;
+}
+
   & form {
     display: flex;
     flex-direction: column;
@@ -189,13 +208,62 @@ body {
 }
 
 .game {
-  background-color: $lightgreen;
+  display: flex;
+  flex-direction: row;
 }
 
+.game-count {
+  min-width: 250px;
+  max-width: 250px;
+  background: $white-shadow;
+  min-height: 87vh;
+  overflow: auto;
+  color: $lightwhite;
+  font-size: 20px;
+  & legend {
+    font-family: sans-serif;
+    font-size: 30px;
+    color: $lightwhite;
+  }
+}
+
+.game-play-container {
+  width: 100%;
+}
+
+#new-game,
+#start-game {
+  background-color: $orange;
+  font-size: 40px;
+  &:hover {
+    background: $darkerorange;
+  }
+}
+
+.game-container {
+  display: flex;
+  flex-direction: row;
+  & span {
+    font-size: 40px;
+  }
+}
+
+
 .game-board {
-  background: $grey;
+  // background: $grey;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+@keyframes zoom-in {
+  from {
+    transform: scale(1, 1);
+  }
+  to {
+    transform: scale(1.8, 1.8);
+  }
 }
 
 .board-row {
@@ -204,22 +272,29 @@ body {
 
   & div { // game cells
     align-items: center;
-    background-color: $lightgrey;
+    background-color: rgba(220, 220, 220, .7);
     display: flex;
-    height: 80px;
     justify-content: center;
-    width: 80px;
-
+    height: 160px;
+    width: 160px;
+    font-size: 60px;
+    & span {
+      animation: zoom-in .1s forwards;
+    }
     &:hover {
-      background-color: $lightergrey;
+      background-color: rgba(220, 220, 220, .6);
     }
   }
 }
 
-.game-container {
-  display: flex;
-  flex-direction: row;
-}
+// .game-status-bar {
+//   position: relative;
+//   height: auto;
+//   font-size: 40px;
+//   color: $lightwhite;
+//   height: 10%;
+// }
+
 
 @media screen and (min-width: 1000px) {
   .form {

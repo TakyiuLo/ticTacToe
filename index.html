@@ -1,155 +1,131 @@
 <!DOCTYPE html>
 <html>
-    <head>
+   <head>
       <title>Tic Tac Toe</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-
       <!-- Do not add `link` tags-->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-
       <!-- Do not add `script` tags-->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body>
+   </head>
+   <body>
       <div class="view">
-        <div id="credentials" class="font-page">
-          <div class="title">
-            <h1><span class="title">TIC TAC TOE</span></h1>
-            <!-- <h2 id="signInStatus" class="not-sign-in">Not Signed in</h2> -->
-            <h3 class="message"></h3>
-          </div>
-          <!-- <div class="box">
-            Credentials
-          </div> -->
+         <div id="credentials" class="font-page">
+            <div class="title">
+               <h1><span class="title">TIC TAC TOE</span></h1>
+               <!-- <h2 id="signInStatus" class="not-sign-in">Not Signed in</h2> -->
+               <h3 class="message"></h3>
+            </div>
+            <!-- <div class="box">
+               Credentials
+               </div> -->
             <div class="credentials">
-              <div id="signUp" class="form">Sign Up
-                <form id="sign-up" class="">
-                  <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                    <input class="form-control" type="email" name="credentials[email]" placeholder="Email Address">
-                  </div>
-                  <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                    <input class="form-control" type="password" name="credentials[password]" placeholder="Password">
-                  </div>
-                  <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                    <input class="form-control" type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
-                  </div>
-                  <div class="input-group sign-up-button">
-                    <button class="btn btn--form" type="submit">Register</button>
-                  </div>
-                </form>
-              </div>
-              <div id="signIn" class="form">Sign In
-                <form id="sign-in" class="">
-                  <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                    <input class="form-control" type="email" name="credentials[email]" placeholder="Email Address">
-                  </div>
-                  <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                    <input class="form-control" type="password" name="credentials[password]" placeholder="Password">
-                  </div>
-                  <div class="input-group sign-in-button">
-                    <button class="btn btn--form" type="submit">Login</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- testing sidebar start here -->
-        <div class="wrapper hidden container-fluid">
-          <div class="row">
-            <div class="col-md-3">
-              <nav class="sidebar">
-                <h2 class="title">Tic Tac Toe</h2>
-                <div class="sign-out">
-                  <span class="glyphicon glyphicon-arrow-left"></span>
-                  <a id="sign-out" type="button">Sign out</a>
-                </div>
-                <form id="change-password" class="change-password-form">
-                    <legend>Change Password</legend>
-                    <div class="input-group">
-                      <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                      <input class="form-control" type="password" name="passwords[old]" placeholder="Old Password">
-                    </div>
-                    <div class="input-group">
-                      <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                      <input class="form-control" type="password" name="passwords[new]" placeholder="New Password">
-                    </div>
-                    <div class="input-group change-password-button">
-                      <button class="btn btn--form" type="submit">Submit</button>
-                    </div>
+               <div id="signUp" class="form">
+                  Sign Up
+                  <form id="sign-up" class="">
+                     <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                        <input class="form-control" type="email" name="credentials[email]" placeholder="Email Address">
+                     </div>
+                     <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                        <input class="form-control" type="password" name="credentials[password]" placeholder="Password">
+                     </div>
+                     <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                        <input class="form-control" type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+                     </div>
+                     <div class="input-group sign-up-button">
+                        <button class="btn btn--form" type="submit">Register</button>
+                     </div>
                   </form>
-              </nav>
+               </div>
+               <div id="signIn" class="form">
+                  Sign In
+                  <form id="sign-in" class="">
+                     <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                        <input class="form-control" type="email" name="credentials[email]" placeholder="Email Address">
+                     </div>
+                     <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                        <input class="form-control" type="password" name="credentials[password]" placeholder="Password">
+                     </div>
+                     <div class="input-group sign-in-button">
+                        <button class="btn btn--form" type="submit">Login</button>
+                     </div>
+                  </form>
+               </div>
             </div>
-          </div>
-
-          <div class="contents col-md-12">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="navbar">
-                  <div class="border-menu sidebar-toggle col-md-2">
-                    <span class="border-menu-bar"></span>
-                    <span class="border-menu-bar"></span>
-                    <span class="border-menu-bar"></span>
-                  </div>
-                  <h3 class="message" class="col-md-10"></h3>
-                </div>
-              </div>
-            </div>
-
-            <!-- contents -->
-            <div id="game" class="box game hidden">
-              <div class="navbar box">
-                <!-- <h2 id="signInStatus" class="not-sign-in">Not Signed in</h2>
-                <h3 id="message"></h3> -->
-                <div class="logo">Tic Tac Toe</div>
-
-              </div>
-
-              <div class="game-container box">
-                <div id="game-count" class="game-count box">
-                  <h6>Game Count</h6>
-                  <p>Nothing Yet</p>
-                </div>
-
-                <div class="game-play-container box">
-                  <div id="game-board" class="game-board box hidden">Game Board
-                    <div class="board-row">
-                      <div class="box" id="cell0">0</div>
-                      <div class="box" id="cell1">1</div>
-                      <div class="box" id="cell2">2</div>
-                    </div>
-                    <div class="board-row">
-                      <div class="box" id="cell3">3</div>
-                      <div class="box" id="cell4">4</div>
-                      <div class="box" id="cell5">5</div>
-                    </div>
-                    <div class="board-row">
-                      <div class="box" id="cell6">6</div>
-                      <div class="box" id="cell7">7</div>
-                      <div class="box" id="cell8">8</div>
-                    </div>
-                  </div>
-
-                  <button id="new-game" class="box hidden" type="button">New Game</button>
-                  <button id="start-game" class="box" type="button">Start Game</button>
-
-                  <div id="game-status-bar" class="game-status-bar box">Game Status</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- testing sidebar ends here -->
-
-
+         </div>
       </div>
-    </body>
+      <!-- testing sidebar start here -->
+      <div class="wrapper hidden">
+         <div class="sidebar">
+            <h2 class="title">Tic Tac Toe</h2>
+            <div class="sign-out">
+               <span class="glyphicon glyphicon-arrow-left"></span>
+               <a id="sign-out" type="button">Sign out</a>
+            </div>
+            <form id="change-password" class="change-password-form">
+               <legend>Change Password</legend>
+               <div class="input-group">
+                  <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                  <input class="form-control" type="password" name="passwords[old]" placeholder="Old Password">
+               </div>
+               <div class="input-group">
+                  <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                  <input class="form-control" type="password" name="passwords[new]" placeholder="New Password">
+               </div>
+               <div class="input-group change-password-button">
+                  <button class="btn btn--form" type="submit">Submit</button>
+               </div>
+            </form>
+         </div>
+         <div class="contents">
+            <div class="navbar">
+               <div class="border-menu sidebar-toggle col-md-2">
+                  <span class="border-menu-bar"></span>
+                  <span class="border-menu-bar"></span>
+                  <span class="border-menu-bar"></span>
+               </div>
+               <h3 class="message" class="col-md-10"></h3>
+            </div>
+            <!-- contents -->
+            <div id="game" class="game hidden">
+               <!-- <h2 id="signInStatus" class="not-sign-in">Not Signed in</h2>
+                  <h3 id="message"></h3> -->
+               <div id="game-count" class="game-count">
+                  <legend class="game-count-title">Game Count</legend>
+                  <p>Nothing Yet</p>
+               </div>
+               <div class="game-play-container">
+                  <div id="game-board" class="game-board hidden">
+                     <!-- <span>Game Board</span> -->
+                     <div class="board-row">
+                        <div class="box" id="cell0">0</div>
+                        <div class="box" id="cell1">1</div>
+                        <div class="box" id="cell2">2</div>
+                     </div>
+                     <div class="board-row">
+                        <div class="box" id="cell3">3</div>
+                        <div class="box" id="cell4">4</div>
+                        <div class="box" id="cell5">5</div>
+                     </div>
+                     <div class="board-row">
+                        <div class="box" id="cell6">6</div>
+                        <div class="box" id="cell7">7</div>
+                        <div class="box" id="cell8">8</div>
+                     </div>
+                     <button id="new-game" class="btn hidden" type="button">New Game</button>
+                  </div>
+                  <button id="start-game" class="btn" type="button">Start Game</button>
+                  <div id="game-status-bar" class="game-status-bar hidden">Game Status</div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- testing sidebar ends here -->
+   </body>
 </html>

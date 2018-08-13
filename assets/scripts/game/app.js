@@ -26,6 +26,7 @@ const newGame = function () {
 
 const startGame = function () {
   $('#start-game').addClass('hidden')
+  // $('#game-status-bar').removeClass('hidden')
   events.onCreateGame()
   store.events.updateGameOver = events.onUpdateGameOver
 }
@@ -38,21 +39,15 @@ const addHandlers = function () {
   // Map each cell clicks
   $('.board-row div').off('click').on('click', boxClick)
   // sidebar
-  $('.sidebar-toggle').on('click', function (e) {
+  $('.sidebar-toggle').off('click').on('click', function (e) {
     e.preventDefault()
-    $('.wrapper').toggleClass(function () {
-      if ($('.wrapper .contents').hasClass('col-md-12')) {
-        $('.wrapper .contents').addClass('col-md-9').removeClass('col-md-12')
-      } else if ($('.wrapper .contents').hasClass('col-md-9')) {
-        $('.wrapper .contents').addClass('col-md-12').removeClass('col-md-9')
-      }
-      return 'slide-out'
-    })
+    $('.wrapper').toggleClass('slide-out')
   })
 }
 
 const startGameProcedures = function () {
   addHandlers()
+  events.onGetAllGames()
   // Mapping Game Count
 }
 
