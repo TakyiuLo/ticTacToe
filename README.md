@@ -50,10 +50,10 @@ Ajax etc.
 
 ## Furture Features:
 - Multiplayer
-- More animation
+- Animation between sign in and sign out
 
 ## Bugs:
-- Getting the sidebar to collpse with animation
+-  N/A: let me know if you find any
 
 ## User Stories:
 
