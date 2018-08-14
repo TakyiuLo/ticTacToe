@@ -8,18 +8,20 @@ const onCreateSuccess = function (response) {
   // lock cells... there is probably a better to do this but...
   $('.board-row div').css('pointer-events', 'none')
   setTimeout(function () {
-    $('.message').text('Game Start ' + 1)
+    $('.message').text('Game Start in ' + 3)
   }, 500)
   setTimeout(function () {
-    $('.message').text('Game Start ' + 2)
+    $('.message').text('Game Start in ' + 2)
   }, 1000)
   setTimeout(function () {
-    $('.message').text('Game Start ' + 3)
+    $('.message').text('Game Start in ' + 1)
   }, 1500)
   // console.log('create game', response.game)
   store.serverGame = response.game
   // console.log('store on create', store)
+  // game board
   $('#game-board').removeClass('hidden')
+  $('#game-board').toggleClass('game-fadein')
   // clear cell texts
   $('.board-row div').text('')
   // clean status game bar

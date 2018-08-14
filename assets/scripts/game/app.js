@@ -39,9 +39,9 @@ const addHandlers = function () {
   // Map each cell clicks
   $('.board-row div').off('click').on('click', boxClick)
   // sidebar
-  $('.sidebar-toggle').off('click').on('click', function (e) {
-    e.preventDefault()
-    $('.wrapper').toggleClass('slide-out')
+  $('.sidebar-toggle').off('click').on('click', function () {
+    $('.sidebar').toggleClass('active')
+    console.log('clicked')
   })
 }
 

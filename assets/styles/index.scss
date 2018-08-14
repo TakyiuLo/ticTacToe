@@ -45,8 +45,28 @@ body {
   font-family: 'KBSticktoIt';
   color: $lightwhite;
 }
+#title {
+  margin-top: 230px;
+  transition: all 1s ease-in-out;
+}
+#title.active {
+  margin-top: 0px;
+}
+#title h1 span:hover {
+  font-size: 100px;
+  color: $orange;
+}
+
 .message {
   font-size: 30px;
+}
+
+#credentials-message {
+  opacity: 0;
+}
+#credentials-message.active {
+  transition: all 1s ease-in-out;
+  opacity: 1;
 }
 
 .credentials {
@@ -55,6 +75,11 @@ body {
   margin-bottom: 50px;
   margin-top: 50px;
   background-color: $white-shadow;
+  opacity: 0;
+}
+.credentials.active {
+  transition: all 1s ease-in-out;
+  opacity: 1;
 }
 
 .form {
@@ -82,7 +107,6 @@ body {
 .wrapper {
   display: flex;
   flex-direction: row;
-  align-items: stretch;
 }
 .contents {
   width: 100%;
@@ -100,8 +124,10 @@ body {
 }
 
 .slide-out {
-  -webkit-animation: slide-right 1s forwards;
   animation: slide-right 1s forwards;
+}
+.slide-in {
+  animation: reverse slide-right 1s forwards;
 }
 
 .sidebar {
@@ -110,6 +136,7 @@ body {
   max-width: 300px;
   min-height: 100vh;
   background-color: #1692b2;
+  transition: 0.5s ease-in-out;
   & h2 {
     color: white;
     text-align: left;
@@ -132,34 +159,34 @@ body {
     }
   }
 
-@keyframes shake { // credit to w3school
-  0% { transform: translate(1px, 1px) }
-  10% { transform: translate(-1px, -2px) }
-  20% { transform: translate(-3px, 0px) }
-  30% { transform: translate(3px, 2px) }
-  40% { transform: translate(1px, -1px) }
-  50% { transform: translate(-1px, 2px) }
-  60% { transform: translate(-3px, 1px) }
-  70% { transform: translate(3px, 1px)  }
-  80% { transform: translate(-1px, -1px) }
-  90% { transform: translate(1px, 2px) }
-  100% {
-    transform: translate(1px, -2px) rotate(-1deg);
+  @keyframes shake { // credit to w3school
+    0% { transform: translate(1px, 1px) }
+    10% { transform: translate(-1px, -2px) }
+    20% { transform: translate(-3px, 0px) }
+    30% { transform: translate(3px, 2px) }
+    40% { transform: translate(1px, -1px) }
+    50% { transform: translate(-1px, 2px) }
+    60% { transform: translate(-3px, 1px) }
+    70% { transform: translate(3px, 1px)  }
+    80% { transform: translate(-1px, -1px) }
+    90% { transform: translate(1px, 2px) }
+    100% {
+      transform: translate(1px, -2px) rotate(-1deg);
 
+    }
   }
-}
 
-.animation-shake {
-  animation: shake .5s 3;
-}
-.animation-change-password-success {
-  animation: shake .5s 3;
-  color: $lightgreen;
-}
-.animation-change-password-fail {
-  animation: reverse shake .5s 3;
-  color: red;
-}
+  .animation-shake {
+    animation: shake .5s 3;
+  }
+  .animation-change-password-success {
+    animation: shake .5s 3;
+    color: $lightgreen;
+  }
+  .animation-change-password-fail {
+    animation: reverse shake .5s 3;
+    color: red;
+  }
 
   & form {
     display: flex;
@@ -177,27 +204,32 @@ body {
     }
   }
 }
+.sidebar.active {
+  margin-left: 0px;
+}
 
-.border-menu {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 4em;
-  height: 4em;
-  padding: 0.4em 0 0.4em 0;
-  background-color: #0b7195;
+.sidebar-toggle {
+  position: absolute;
+  width: 80px;
+  height: 100%;
+  top: 0px;
+  background: $lightgrey;
   &:hover {
     background: $white-shadow;
   }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.border-menu-bar {
-  border: 1px solid black;
-  border-radius: 1em;
-  background-color: black;
-  width: 3em;
-  height: .4em;
-  border-color: $grey;
+
+.sidebar-toggle span {
+  display: block;
+  border-radius: 5px;
+  width: 80%;
+  height: 5px;
+  background: #151719;
+  margin: 5px 0px;
 }
 
 // testings end here
@@ -228,6 +260,9 @@ body {
 }
 
 .game-play-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
@@ -248,6 +283,11 @@ body {
   }
 }
 
+// gameboard animation
+@keyframes fade-in {
+  from {opacity: .5;}
+  to {opacity: 1;}
+}
 
 .game-board {
   // background: $grey;
@@ -257,6 +297,11 @@ body {
   align-items: center;
   height: 100%;
 }
+
+.game-fadein {
+  animation: fade-in 3s forwards;
+}
+
 @keyframes zoom-in {
   from {
     transform: scale(1, 1);
