@@ -6,7 +6,7 @@ cell and change turns. For other player, he/she will place an "O" on a valid
 cell. Players switch back and forward until all space is ocupy or one have three
 spots in a row, col, or diagonally.
 
-## Description:
+## Techniques:
 This project is mainly for training purposes such as Git, HTML, CSS, Javascript,
 Ajax etc.
 - These are techniques that I used.
@@ -54,6 +54,31 @@ Ajax etc.
 
 ## Bugs:
 -  N/A: let me know if you find any
+
+## Plan: 
+At first I was confuse where to start so I start reading the api documentation
+that I am gonna use. Then I draw my wireframe and write my user stories. The on
+going steps are following:
+  - read the documentation again to understand what it requires
+  - create a template
+  - create a understandable file tree
+  - then start in the index files
+    ...
+The on going is to create files that I had practice with. I usually start with
+creating a branch where I can test for. Then if something work I merge into
+master. For instance, if I need to refactor codes, I create a new branch and
+do it there until I can solve it. However, sometimes I got stuck. Personally,
+I like to break apart from thinking about it. Then I come back after a break
+with a new mind set. If there are still any problems I couldn't solve, I would
+simply issue a problem in a queue such as the current project issues stack,
+slack, and maybe Stack Overflow. The main part is that I won't be breaking any
+codes when I test. So then I could come back later.
+
+A few issues that I still have are:
+- I couldn't get the gameboard animation to work everytime I create a new game.
+- I couldn't make a better hamburger icon.
+- I couldn't understand the multiplayer documentation.
+- etc.
 
 ## User Stories:
 
