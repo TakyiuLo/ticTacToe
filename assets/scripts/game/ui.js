@@ -19,6 +19,8 @@ const onCreateSuccess = function (response) {
   // console.log('create game', response.game)
   store.serverGame = response.game
   // console.log('store on create', store)
+  // turns cells on back on
+
   // game board
   $('#game-board').removeClass('hidden')
   $('#game-board').toggleClass('game-fadein')
@@ -50,7 +52,7 @@ const onUpdateGameSuccess = function (response) {
   // change html cell to correct text ('X' or 'O')
   const cell = '#cell' + store.playerIndex
   $(cell).html('<span>' + store.game.whosTurn + '</span>')
-  $(cell).off('click')
+  // $(cell).off('click')
   game.chooseCell()
 }
 

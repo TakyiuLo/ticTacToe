@@ -4,8 +4,14 @@ const store = require('../store')
 const events = require('./events')
 
 const boxClick = function (event) {
-  // prevent event to ajax things twice
+  // prevent event to ajax things multiply times
   event.preventDefault()
+  if ($(event.target).attr('clickedOnce') === 'true') {
+    /* counter measures */
+    return
+  }
+  $(event.target).attr('clickedOnce', 'true')
+  console.log('click')
   const index = event.target.id.substring(4)
   store.playerIndex = index
   const data = {
@@ -37,7 +43,7 @@ const addHandlers = function () {
   // Mapping start game button
   $('#start-game').off('click').on('click', startGame)
   // Map each cell clicks
-  $('.board-row div').off('click').on('click', boxClick)
+  $('.board-row div').on('click', boxClick)
   // sidebar
   $('.sidebar-toggle').off('click').on('click', function () {
     $('.sidebar').toggleClass('active')

@@ -16,6 +16,7 @@ $(() => {
   store.events.startGameProcedures = gameApp.startGameProcedures
   store.events.quitGameProcedures = gameApp.quitGameProcedures
 
+  // first page animation
   $('#title h1 span').off('click').on('click', () => {
     $('#title').toggleClass('active')
     $('#credentials-message').toggleClass('active')
