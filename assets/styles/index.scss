@@ -45,8 +45,28 @@ body {
   font-family: 'KBSticktoIt';
   color: $lightwhite;
 }
+#title {
+  margin-top: 230px;
+  transition: all 1s ease-in-out;
+}
+#title.active {
+  margin-top: 0px;
+}
+#title h1 span:hover {
+  font-size: 100px;
+  color: $orange;
+}
+
 .message {
   font-size: 30px;
+}
+
+#credentials-message {
+  opacity: 0;
+}
+#credentials-message.active {
+  transition: all 1s ease-in-out;
+  opacity: 1;
 }
 
 .credentials {
@@ -55,6 +75,11 @@ body {
   margin-bottom: 50px;
   margin-top: 50px;
   background-color: $white-shadow;
+  opacity: 0;
+}
+.credentials.active {
+  transition: all 1s ease-in-out;
+  opacity: 1;
 }
 
 .form {

@@ -15,4 +15,10 @@ $(() => {
   store.events = {}
   store.events.startGameProcedures = gameApp.startGameProcedures
   store.events.quitGameProcedures = gameApp.quitGameProcedures
+
+  $('#title h1 span').off('click').on('click', () => {
+    $('#title').toggleClass('active')
+    $('#credentials-message').toggleClass('active')
+    $('.credentials').toggleClass('active')
+  })
 })

@@ -7,7 +7,13 @@ const addHandlers = function () {
   $('#sign-in').on('submit', events.onSignIn)
   $('#change-password').on('submit', events.onChangePassword)
   $('.sign-out').on('click', events.onSignOut)
+  addSplashScreen()
 }
+
+const addSplashScreen = function () {
+
+}
+
 module.exports = {
   addHandlers
 }
