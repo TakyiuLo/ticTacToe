@@ -11,7 +11,12 @@ const addHandlers = function () {
 }
 
 const addSplashScreen = function () {
-
+  // first page animation
+  $('#title h1 span').off('click').on('click', () => {
+    $('#title').toggleClass('active')
+    $('#credentials-message').toggleClass('active')
+    $('.credentials').toggleClass('active')
+  })
 }
 
 module.exports = {

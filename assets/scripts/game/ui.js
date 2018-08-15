@@ -64,7 +64,7 @@ const onUpdateGameFailure = function () {
 const onGetGameSuccess = function (response) {
   $('.message').text('Successfully Get Game')
   response = JSON.parse(JSON.stringify(response))
-  console.log('Successfully Get Game', response)
+  // console.log('Successfully Get Game', response)
 }
 
 const onGetGameFailure = function () {

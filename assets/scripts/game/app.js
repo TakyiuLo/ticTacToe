@@ -11,7 +11,6 @@ const boxClick = function (event) {
     return
   }
   $(event.target).attr('clickedOnce', 'true')
-  console.log('click')
   const index = event.target.id.substring(4)
   store.playerIndex = index
   const data = {
@@ -27,11 +26,13 @@ const boxClick = function (event) {
 
 const newGame = function () {
   $('#new-game').addClass('hidden')
+  $('.board-row div').attr('clickedOnce', 'false')
   events.onCreateGame()
 }
 
 const startGame = function () {
   $('#start-game').addClass('hidden')
+  $('.board-row div').attr('clickedOnce', 'false')
   // $('#game-status-bar').removeClass('hidden')
   events.onCreateGame()
   store.events.updateGameOver = events.onUpdateGameOver
@@ -47,7 +48,7 @@ const addHandlers = function () {
   // sidebar
   $('.sidebar-toggle').off('click').on('click', function () {
     $('.sidebar').toggleClass('active')
-    console.log('clicked')
+    // console.log('clicked')
   })
 }
 

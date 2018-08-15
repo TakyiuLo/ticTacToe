@@ -21,7 +21,7 @@ const gameObject = {
     // update the game isOver to server
     store.events.updateGameOver(data)
 
-    console.log('game over, Winner is', this.winner)
+    // console.log('game over, Winner is', this.winner)
   },
   equalVals: function (element, index, array) {
     // This function is going to check if the entire array has the same value

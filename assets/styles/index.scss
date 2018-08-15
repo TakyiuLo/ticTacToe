@@ -112,23 +112,23 @@ body {
   width: 100%;
 }
 
-@keyframes slide-right {
-  from {
-    transform: translateX(0px);
-  }
-
-  to {
-    transform: translateX(300px);
-    opacity: 1;
-  }
-}
-
-.slide-out {
-  animation: slide-right 1s forwards;
-}
-.slide-in {
-  animation: reverse slide-right 1s forwards;
-}
+// @keyframes slide-right {
+//   from {
+//     transform: translateX(0px);
+//   }
+//
+//   to {
+//     transform: translateX(300px);
+//     opacity: 1;
+//   }
+// }
+//
+// .slide-out {
+//   animation: slide-right 1s forwards;
+// }
+// .slide-in {
+//   animation: reverse slide-right 1s forwards;
+// }
 
 .sidebar {
   margin-left: -300px;
