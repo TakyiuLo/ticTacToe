@@ -1,7 +1,6 @@
 'use strict'
 
 const store = require('../store.js')
-const gameApp = require('../game/app')
 
 const signUpSuccess = function () {
   $('.message').text('Successfully Sign Up')

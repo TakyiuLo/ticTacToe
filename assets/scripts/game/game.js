@@ -88,11 +88,11 @@ const gameObject = {
     // change turn
     this.whosTurn = this.whosTurn === 'X' ? 'O' : 'X'
   },
-  chooseCell: function () {
+  chooseCell: function (index) {
     // update the local gameBoard
-    this.board[store.playerIndex] = this.whosTurn
+    this.board[index] = this.whosTurn
     // check is there a winner
-    this.checkWinner()
+    // this.checkWinner()
   },
   updateGamelogic: function (serverGame) {
     // this function is to retrieve data from server to update game board

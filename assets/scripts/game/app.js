@@ -3,79 +3,39 @@
 const store = require('../store')
 const events = require('./events')
 
-// _WARNING: read this first, orders of operation matters very much for this
-// perticular app. A different order will cause more bugs.
-// If we update the server game before update the game logic it means to be lag
 const boxClick = function (event) {
-  // prevent event to ajax things multiply times
   event.preventDefault()
-  // check if the game have been created
-  if (store.serverGame === undefined) {
-    console.log('game haven\'t create yet')
-    return
-  }
-  // check if a cell had been clicked
-  console.log($(event.target).attr('clickedOnce'))
-  if ($(event.target).attr('clickedOnce') === 'true') {
-    /* counter measures */
-    console.log('clicked once')
-    return
-  }
-  $(event.target).off('click') // if more bugs shows, use this line
-  // mark cells that are clicked
-  $(event.target).attr('clickedOnce', 'true')
 
-  // This check if the cell is taken.
-  // Why are we going through all this trouble? Because we are doing a visible
-  // board with an asynchronous timer on it and we also wanted to have clickable
-  // event that can handles a clicked spot. More future features might come so
-  // we are preparing.
-  // Also we are checking it with local copy of game board because the server game
-  // board is slow to update so we couldn't afford to wait until it update our
-  // local server gameboard.
   const index = parseInt(event.target.id.substring(4), 10)
-  store.playerIndex = index
-  if (store.game.board[index] === 'X' || store.game.board[index] === 'O') {
-    console.log('spot choosen')
-    return
-  }
-  const data = {
-    game: {
-      cell: {
-        index: index,
-        value: store.game.whosTurn
+  if (store.game.board[index] !== '') {
+    // console.log('spot chosen')
+  } else {
+    $(event.target).off('click')
+    store.playerIndex = index
+    const data = {
+      game: {
+        cell: {
+          index: index,
+          value: store.game.whosTurn
+        }
       }
     }
+    store.game.chooseCell(index)
+    events.onUpdateGame(data)
+    // console.log(JSON.parse(JSON.stringify(store.game)))
   }
-  // You got to update the logic first(but not the ui) because the request
-  // isn't fast enough to update the logic afterward which means a click on
-  // other cell will think that they are still X and triggers thier corresponded
-  // cell-click event. This usually happens at the start of a new game.
-  // You also got to do this after you saved the current player because chooseCell
-  // will change to next player instantly.
-  console.log('game cell', store.game.board[index])
-  store.game.chooseCell()
-
-  // Again, because updating the server is slow, we might get updating a winning
-  // game before a cell been update. To prevent this, we check the local game
-  if (store.game.isOver) {
-    return
-  }
-  events.onUpdateGame(data)
 }
 
 const newGame = function () {
   $('#new-game').addClass('hidden')
-  $('.board-row div').attr('clickedOnce', 'false')
   events.onCreateGame()
 }
 
 const startGame = function () {
   $('#start-game').addClass('hidden')
-  $('.board-row div').attr('clickedOnce', 'false')
-  // $('#game-status-bar').removeClass('hidden')
   events.onCreateGame()
   store.events.updateGameOver = events.onUpdateGameOver
+  store.events.boxClick = boxClick
 }
 
 const addHandlers = function () {
@@ -84,7 +44,7 @@ const addHandlers = function () {
   // Mapping start game button
   $('#start-game').off('click').on('click', startGame)
   // Map each cell clicks
-  $('.board-row div').on('click', boxClick)
+  $('.board-row div').off('click').on('click', boxClick)
   // sidebar
   $('.sidebar-toggle').off('click').on('click', function () {
     $('.sidebar').toggleClass('active')
@@ -122,7 +82,7 @@ const quitGameProcedures = function () {
   // May need to clean events first if newGame button is avaliable while playing
   $('.board-row div').off('click')
   $('.board-row div').text('')
-  $('#game-status-bar').text('Game Status')
+  $('.sidebar-toggle').off('click')
 }
 
 module.exports = {
