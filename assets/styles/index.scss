@@ -352,3 +352,55 @@ body {
     width: 350px;
   }
 }
+
+@media only screen and (min-width: 375px) {
+  body {
+    height: 700px;
+    // overflow-y: hidden;
+  }
+  .credentials {
+    flex-direction: column;
+  }
+  #title {
+    margin-top: 100px;
+    transition: all 1s ease-in-out;
+  }
+  #title.active {
+    margin-top: 0px;
+    & h1 span {
+      font-size: 50px;
+      transition: all 0.5s ease-in-out;
+    }
+  }
+  #title h1 span {
+    font-size: 100px;
+  }
+  #signUp {
+    margin-right: 10px;
+  }
+  #signIn {
+    margin-left: 10px;
+  }
+  .message {
+    font-size: 25px;
+    margin-left: 75px;
+  }
+  .wrapper {
+    overflow: hidden;
+  }
+  .game-count {
+    min-width: 80%;
+    max-width: 125%;
+    min-height: inherit;
+  }
+  .game {
+    flex-direction: column;
+  }
+  .game-play-container {
+    width: 375px;
+  }
+  .board-row div {
+    width: 125px;
+    height: 125px;
+  }
+}
