@@ -71,6 +71,7 @@ body {
 
 .credentials {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   margin-bottom: 50px;
   margin-top: 50px;
@@ -353,7 +354,7 @@ body {
   }
 }
 
-@media only screen and (min-width: 375px) {
+@media(max-width: 768px) {
   body {
     height: 700px;
     // overflow-y: hidden;
